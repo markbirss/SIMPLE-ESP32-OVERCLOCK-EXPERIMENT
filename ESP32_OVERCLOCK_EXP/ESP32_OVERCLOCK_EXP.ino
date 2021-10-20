@@ -18,9 +18,10 @@
 uint8_t OVERCLOCK=1;
 
 //0 = 1.000x of speed = no overclock 
-//1 = 1.414x of speed 
-//2 = 1.540x of speed
-//3 = 1.666x of speed
+//1 = 1.290x of speed   
+//2 = 1.414x of speed 
+//3 = 1.540x of speed
+//4 = 1.666x of speed
 
 //********************************************************************************
 
@@ -92,10 +93,12 @@ void OVERCLOCK_ME(uint8_t OC_LEVEL) {
   div_ref = 0;
 
   if (OC_LEVEL==1) {
-     div7_0 = 56;  // ~1.41421356x speed (~340MHz?) 
+     div7_0 = 40;  // ~SQRT(5/3)x speed (~310MHz?) 
   } else if (OC_LEVEL==2) {
-     div7_0 = 56;  // ~1.54044011x speed (~370MHz?)
+     div7_0 = 48;  // ~1.41421356x speed (~340MHz?) 
   } else if (OC_LEVEL==3) {
+     div7_0 = 56;  // ~1.54044011x speed (~370MHz?)
+  } else if (OC_LEVEL==4) {
     div7_0 = 64;   // ~1.66666667x speed (~400MHz?)
   } else {
     div7_0 = 32;   // 1x speed (240MHz)
@@ -118,9 +121,10 @@ float TIMING;
 
 void setup() {
 
-  if (OVERCLOCK==1) TIMING=1.41421356;        //=SQRT(2);
-  else if (OVERCLOCK==2) TIMING=1.54044011;
-  else if (OVERCLOCK==3) TIMING=1.66666667;   //=5/3
+  if (OVERCLOCK==1) TIMING=1.29099444;   //=SQRT(5/3)
+  else if (OVERCLOCK==2) TIMING=1.41421356;   //=SQRT(2);
+  else if (OVERCLOCK==3) TIMING=1.54044011;   //=?
+  else if (OVERCLOCK==4) TIMING=1.66666667;   //=5/3
   else TIMING=1;
 
   Serial.begin(115200 / TIMING);
