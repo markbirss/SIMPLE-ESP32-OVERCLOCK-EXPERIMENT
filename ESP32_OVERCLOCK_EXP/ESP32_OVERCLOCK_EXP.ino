@@ -121,7 +121,7 @@ float TIMING;
 
 void setup() {
 
-  if (OVERCLOCK==1) TIMING=1.29099444;   //=SQRT(5/3)
+  if (OVERCLOCK==1) TIMING=1.290;   //=SQRT(5/3)
   else if (OVERCLOCK==2) TIMING=1.41421356;   //=SQRT(2);
   else if (OVERCLOCK==3) TIMING=1.54044011;   //=?
   else if (OVERCLOCK==4) TIMING=1.66666667;   //=5/3
